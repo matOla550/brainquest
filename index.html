@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BrainQuest Quiz</title>
+
+  <!-- Google Fonts: Fredoka for headings, Nunito for body text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER (always visible) ===== -->
+  <header class="site-header">
+    <svg class="logo-icon" width="36" height="36" viewBox="0 0 40 40" aria-hidden="true">
+      <rect width="40" height="40" rx="12" fill="#6D3FE0"></rect>
+      <text x="20" y="29" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="26" font-weight="700" fill="#FFFFFF">?</text>
+    </svg>
+    <span class="logo-name">BrainQuest</span>
+  </header>
+
+  <main class="page">
+
+    <!-- ===== SCREEN 1: WELCOME ===== -->
+    <section id="welcome-screen" class="screen welcome">
+      <div class="welcome-text">
+        <span class="pill">Quick quiz for secondary school</span>
+        <h1>Ready to test your brain?</h1>
+        <p class="intro">Answer ten quick questions on science, maths, geography and computing. There is no timer and no pressure. Just see how much you already know.</p>
+
+        <div class="stats">
+          <div class="stat-card">
+            <span id="stat-questions" class="stat-number">10</span>
+            <span class="stat-label">Questions</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">4</span>
+            <span class="stat-label">Categories</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">5 min</span>
+            <span class="stat-label">To finish</span>
+          </div>
+        </div>
+
+        <ul class="chips">
+          <li class="chip chip-blue">Science</li>
+          <li class="chip chip-violet">Maths</li>
+          <li class="chip chip-blue">Geography</li>
+          <li class="chip chip-violet">Computing</li>
+        </ul>
+
+        <button id="start-button" class="btn btn-primary btn-large" type="button">Start Quiz</button>
+      </div>
+
+      <!-- Decorative picture: two quiz cards with a tick badge -->
+      <div class="welcome-art" aria-hidden="true">
+        <svg viewBox="0 0 440 400" width="100%">
+          <circle cx="220" cy="200" r="170" fill="#D3DBFF"></circle>
+          <g transform="rotate(8 250 200)"><rect x="150" y="90" width="210" height="250" rx="22" fill="#2F5BEA"></rect></g>
+          <g transform="rotate(-6 200 200)">
+            <rect x="90" y="70" width="210" height="250" rx="22" fill="#FFFFFF" stroke="#C9D1F2" stroke-width="3"></rect>
+            <text x="195" y="215" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="130" font-weight="700" fill="#6D3FE0">?</text>
+            <rect x="125" y="248" width="140" height="12" rx="6" fill="#E4E9FF"></rect>
+            <rect x="125" y="272" width="90" height="12" rx="6" fill="#E4E9FF"></rect>
+          </g>
+          <circle cx="338" cy="96" r="34" fill="#17894F"></circle>
+          <path d="M322 97l11 11 20-22" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"></path>
+          <circle cx="70" cy="320" r="14" fill="#F5B83D"></circle>
+          <circle cx="385" cy="300" r="9" fill="#6D3FE0"></circle>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 2: QUIZ ===== -->
+    <section id="quiz-screen" class="screen quiz" hidden>
+      <div class="quiz-top">
+        <p id="question-counter" class="question-counter">Question 1 of 10</p>
+        <p id="score-live" class="score-live">Score: 0</p>
+      </div>
+
+      <!-- Progress bar: the width of the inner bar is set by JavaScript -->
+      <div class="progress" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="10">
+        <div id="progress-fill" class="progress-fill"></div>
+      </div>
+
+      <article class="question-card">
+        <p id="question-category" class="question-category">Science</p>
+        <h2 id="question-text" class="question-text">Question goes here</h2>
+        <!-- The four answer buttons are added here by JavaScript -->
+        <ul id="answer-list" class="answer-list"></ul>
+      </article>
+
+      <p id="feedback" class="feedback" hidden></p>
+
+      <div class="quiz-actions">
+        <button id="next-button" class="btn btn-primary" type="button" disabled>Next Question</button>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 3: RESULTS ===== -->
+    <section id="results-screen" class="screen results" hidden>
+      <div class="results-card">
+        <h2 id="results-heading" class="results-heading">Great job!</h2>
+
+        <div class="score-ring">
+          <p class="score-number"><span id="score-value">0</span><span class="score-total">/<span id="score-total">10</span></span></p>
+          <p id="score-percent" class="score-percent">0%</p>
+        </div>
+
+        <p id="results-message" class="results-message">Well done.</p>
+
+        <div class="summary">
+          <div class="summary-tile summary-correct">
+            <span id="correct-count" class="summary-number">0</span>
+            <span class="summary-label">Correct</span>
+          </div>
+          <div class="summary-tile summary-incorrect">
+            <span id="incorrect-count" class="summary-number">0</span>
+            <span class="summary-label">Incorrect</span>
+          </div>
+        </div>
+
+        <button id="restart-button" class="btn btn-primary btn-large" type="button">Try Again</button>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

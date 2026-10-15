@@ -1,0 +1,604 @@
+/* =====================================================
+   BrainQuest - style.css
+   Colours and sizes live in :root so you can change the
+   whole look by editing the values in one place.
+   ===================================================== */
+
+:root {
+  /* Colours */
+  --blue: #2F5BEA;
+  --blue-dark: #1F3FA8;
+  --blue-soft: #E8EDFF;
+  --violet: #6D3FE0;
+  --violet-soft: #EFE9FF;
+  --ink: #1B1F3B;        /* main text */
+  --muted: #596082;      /* labels and captions */
+  --page: #F4F6FF;       /* page background */
+  --surface: #FFFFFF;    /* cards */
+  --border: #DDE2F5;
+  --correct: #17894F;
+  --correct-soft: #E3F6EA;
+  --correct-text: #0E5C33;
+  --wrong: #C93A3A;
+  --wrong-soft: #FDE8E8;
+  --wrong-text: #8E1F1F;
+
+  /* Fonts */
+  --font-heading: "Fredoka", "Trebuchet MS", sans-serif;
+  --font-body: "Nunito", "Segoe UI", Arial, sans-serif;
+
+  /* Shape */
+  --radius-card: 20px;
+  --radius-button: 14px;
+}
+
+/* ---------- Basic reset ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+h1, h2, p, ul {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+/* The "hidden" attribute is how JavaScript shows and hides screens */
+[hidden] {
+  display: none !important;
+}
+
+/* Clear outline for keyboard users */
+button:focus-visible {
+  outline: 3px solid var(--violet);
+  outline-offset: 3px;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background: var(--surface);
+  border-bottom: 2px solid var(--border);
+}
+
+.logo-name {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+/* ---------- Page container ---------- */
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 24px 56px;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 600;
+  min-height: 52px;
+  padding: 12px 32px;
+  border-radius: var(--radius-button);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: #FFFFFF;
+  border: none;
+  border-bottom: 4px solid var(--blue-dark); /* the chunky bottom edge */
+}
+
+.btn-primary:hover {
+  background: #2449C4;
+}
+
+.btn-primary:disabled {
+  background: var(--border);
+  color: #6B7399;
+  border-bottom-color: #C9D1F2;
+  cursor: not-allowed;
+}
+
+.btn-large {
+  font-size: 22px;
+  padding: 14px 40px;
+}
+
+/* =====================================================
+   SCREEN 1: WELCOME
+   ===================================================== */
+.welcome {
+  display: flex;
+  flex-wrap: wrap;          /* the picture drops below the text on small screens */
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  padding-top: 16px;
+}
+
+.welcome-text {
+  flex: 1 1 420px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.pill {
+  background: var(--violet-soft);
+  color: #5A2FC7;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+.welcome h1 {
+  font-family: var(--font-heading);
+  font-size: 52px;
+  line-height: 1.1;
+  font-weight: 600;
+}
+
+.intro {
+  font-size: 20px;
+  line-height: 1.6;
+  color: #4A5173;
+  max-width: 520px;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  padding: 12px 20px;
+  min-width: 96px;
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-number {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--violet);
+}
+
+.stat-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  font-weight: 700;
+  font-size: 14px;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+.chip-blue {
+  background: var(--blue-soft);
+  color: #2447B8;
+}
+
+.chip-violet {
+  background: var(--violet-soft);
+  color: #5A2FC7;
+}
+
+.welcome-art {
+  flex: 1 1 320px;
+  max-width: 460px;
+  min-width: 0;
+  background: #E4E9FF;
+  border-radius: 32px;
+  padding: 24px;
+}
+
+/* =====================================================
+   SCREEN 2: QUIZ
+   ===================================================== */
+.quiz {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.quiz-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: -8px;
+}
+
+.question-counter {
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.score-live {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+/* The grey track and the blue bar that grows inside it */
+.progress {
+  height: 12px;
+  background: var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 10%;
+  background: var(--blue);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.question-card {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.question-category {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--violet);
+  margin-bottom: -12px;
+}
+
+.question-text {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.answer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* One answer button. Its look changes with extra classes:
+   .correct  .incorrect  .dimmed  */
+.answer-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 64px;
+  padding: 14px 20px;
+  background: var(--surface);
+  color: var(--ink);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-button);
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.answer-button:hover:not(:disabled) {
+  border-color: var(--blue);
+  background: #F4F7FF;
+}
+
+/* The round letter (A, B, C, D) or the tick / cross */
+.answer-letter {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #EEF0FA;
+  color: var(--muted);
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.answer-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.answer-tag {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+/* Right answer = green */
+.answer-button.correct {
+  background: var(--correct-soft);
+  border-color: var(--correct);
+  color: var(--correct-text);
+}
+
+.answer-button.correct .answer-letter {
+  background: var(--correct);
+  color: #FFFFFF;
+}
+
+/* Wrong answer the student picked = red */
+.answer-button.incorrect {
+  background: var(--wrong-soft);
+  border-color: var(--wrong);
+  color: var(--wrong-text);
+}
+
+.answer-button.incorrect .answer-letter {
+  background: var(--wrong);
+  color: #FFFFFF;
+}
+
+/* The other answers fade back once the question is answered */
+.answer-button.dimmed {
+  background: #F7F8FD;
+  color: #6B7399;
+  cursor: default;
+}
+
+.answer-button:disabled {
+  cursor: default;
+}
+
+/* Message under the card ("Correct!" or "Not quite.") */
+.feedback {
+  border-radius: 14px;
+  padding: 16px 20px;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.feedback.is-correct {
+  background: var(--correct-soft);
+  border: 2px solid var(--correct);
+  color: var(--correct-text);
+}
+
+.feedback.is-wrong {
+  background: #FFF6DE;
+  border: 2px solid #F0D58A;
+  color: #5C3D00;
+}
+
+.quiz-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* =====================================================
+   SCREEN 3: RESULTS
+   ===================================================== */
+.results {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.results-card {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 24px;
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+
+.results-heading {
+  font-family: var(--font-heading);
+  font-size: 38px;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.score-ring {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 14px solid var(--violet);
+  background: #F4F0FF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.score-number {
+  font-family: var(--font-heading);
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.score-total {
+  font-size: 36px;
+  color: var(--muted);
+}
+
+.score-percent {
+  font-size: 22px;
+  font-weight: 800;
+  color: #5A2FC7;
+  margin-top: 4px;
+}
+
+.results-message {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #4A5173;
+  max-width: 460px;
+}
+
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  width: 100%;
+}
+
+.summary-tile {
+  flex: 1 1 180px;
+  max-width: 260px;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.summary-number {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.summary-label {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.summary-correct {
+  background: var(--correct-soft);
+  border: 2px solid var(--correct);
+  color: var(--correct-text);
+}
+
+.summary-incorrect {
+  background: var(--wrong-soft);
+  border: 2px solid var(--wrong);
+  color: var(--wrong-text);
+}
+
+/* =====================================================
+   RESPONSIVE: tablets and phones
+   ===================================================== */
+@media (max-width: 768px) {
+  .site-header {
+    padding: 12px 16px;
+  }
+
+  .page {
+    padding: 24px 16px 40px;
+  }
+
+  .welcome {
+    gap: 32px;
+  }
+
+  .welcome h1 {
+    font-size: 36px;
+  }
+
+  .intro {
+    font-size: 18px;
+  }
+
+  .welcome-art {
+    max-width: 240px;
+    order: -1;            /* picture moves above the text */
+  }
+
+  .question-card {
+    padding: 20px;
+  }
+
+  .question-text {
+    font-size: 22px;
+  }
+
+  .answer-button {
+    min-height: 56px;
+    padding: 10px 14px;
+    font-size: 16px;
+  }
+
+  .answer-letter {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+
+  .quiz-actions .btn,
+  .results-card .btn,
+  .welcome-text .btn {
+    width: 100%;           /* full-width buttons on phones */
+  }
+
+  .results-card {
+    padding: 28px 20px;
+  }
+
+  .results-heading {
+    font-size: 30px;
+  }
+
+  .score-ring {
+    width: 170px;
+    height: 170px;
+    border-width: 12px;
+  }
+
+  .score-number {
+    font-size: 54px;
+  }
+
+  .score-total {
+    font-size: 30px;
+  }
+}
